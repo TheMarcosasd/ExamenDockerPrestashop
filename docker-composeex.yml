@@ -1,0 +1,27 @@
+version: '3'
+services:
+  prestashop:
+   version: '3'
+services:
+  prestashop:
+    image: prestashop/prestashop
+    container_name: prestashop
+    ports:
+      - "9080:80"
+    environment:
+      - PS_INSTALL_AUTO=1
+      - DB_SERVER=mariadb
+      - DB_USER=dam2
+      - DB_PASS=castelao
+    volumes:
+      - ./prestashop:/var/www/html
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=admin
+    volumes:
+      - ./mariadb:/var/lib/mysql
+
